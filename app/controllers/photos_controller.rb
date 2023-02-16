@@ -70,4 +70,23 @@ class PhotosController < ApplicationController
 
   end
 
+  def new_comment
+
+    input_id = params.fetch("input_photo_id")
+    input_author = params.fetch("input_author_id")
+    input_comment = params.fetch("input_body")
+
+    a_new_comment = Comment.new
+
+    a_new_comment.photo_id = input_id
+    a_new_comment.author_id = input_author
+    a_new_comment.body = input_comment    
+
+    a_new_comment.save
+
+    redirect_to("/photos/" + a_new_comment.photo_id.to_s)
+
+
+  end
+
 end
